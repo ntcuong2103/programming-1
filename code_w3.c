@@ -67,7 +67,6 @@ int matrix_multiplication(int a[num_row_a][num_col_a], int b[num_row_b][num_col_
 
 int get_max_2d_array(int a[num_row][num_col], int axis)
 {
-    // your code here
     if (axis == 0)
     {
         // find max in each column and print out
