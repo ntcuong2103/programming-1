@@ -2,25 +2,37 @@
 
 int calculate(char* s[], int N)
 {
-    // sample code for N == 3
+    int ans = 0;
+    int op;
+    for (int i = 0; i < N; i++)
+    {
+        if (i == 0)
+        {
+            ans = atoi(s[i]);
+            continue;
+        }
 
-    // int a = atoi(s[0]);
-    // int b = atoi(s[2]);
-
-    // switch (s[1][0])
-    // {
-    // case '+':
-    //     return a + b;
-    // case '-':
-    //     return a - b;
-    // case '*':
-    //     return a * b;
-    // case '/':
-    //     return floor of (a/b);
-    // default:
-
-    //     break;
-    // }
+        if (i %2 == 0 && i != 0) 
+        {
+            switch (op)
+            {
+            case '+':
+                ans += atoi(s[i]);
+            case '-':
+                ans -= atoi(s[i]);
+            case '*':
+                ans *= atoi(s[i]);
+            case '/':
+                ans /= atoi(s[i]);
+            default:
+                break;
+            }
+        }
+        else
+        {
+            op = s[i][0];
+        }
+    }
 
     return 0;
 }
