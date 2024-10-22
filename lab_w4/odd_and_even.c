@@ -1,5 +1,8 @@
 #include<math.h>
 
+/**
+ * Note: The returned array must be malloced, assume caller calls free().
+ */
 int* toBinary(int n, int* returnSize)
 {
     // allocate integer array for output
@@ -8,7 +11,7 @@ int* toBinary(int n, int* returnSize)
     *returnSize = size;
 
     // convert n to binary 
-    for(int i = size - 1; i >= 0; i--)
+    for(int i = 0; i <size; i++)
     {
         out[i] = n % 2;
         n = n / 2;
