@@ -6,6 +6,12 @@ struct LinkedList {
     struct LinkedList *next;
 };
 
+struct BinaryTree {
+    int data;
+    struct BinaryTree *left;
+    struct BinaryTree *right;
+};
+
 struct fraction {
     int numerator;
     int denominator;
@@ -41,7 +47,14 @@ int main()
     data1.next = &data2;
     data2.next = &data3;
     data3.next = &data4;
+    struct LinkedList *head = &data1;
 
+    // struct BinaryTree root = {1, NULL, NULL};
+    struct BinaryTree left = {2, NULL, NULL};
+    struct BinaryTree right = {3, NULL, NULL};
+    // root.left = &left;
+    // root.right = &right;
+    struct BinaryTree root = {1, &left, &right};
     
     return 0;
 
