@@ -1,8 +1,34 @@
 #include<math.h>
+#include <stdlib.h>
 
 /**
  * Note: The returned array must be malloced, assume caller calls free().
  */
+
+struct binary_array
+{
+    /* data */
+    int* arr;
+    int size;
+};
+
+struct binary_array toBinaryWithStruct(int n)
+{
+    struct binary_array bin;
+    bin.size = (int)floor(log2(n)) + 1;
+    bin.arr = malloc(bin.size * sizeof(int));
+
+    // convert n to binary 
+    for(int i = 0; i <bin.size; i++)
+    {
+        bin.arr[i] = n % 2;
+        n = n / 2;
+    }
+
+    return bin;
+}
+
+
 int* toBinary(int n, int* returnSize)
 {
     // allocate integer array for output
@@ -30,6 +56,8 @@ int* evenOddBit(int n, int* returnSize) {
 
     int binSize;
     int* bin = toBinary(n, &binSize);
+
+    struct binary_array bin2 = toBinaryWithStruct(n);
 
     // count number of 1s in even and odd bits
     int even = 0;
