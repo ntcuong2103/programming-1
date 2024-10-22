@@ -17,6 +17,17 @@ struct fraction {
     int denominator;
 };
 
+void print_list(struct LinkedList *head)
+{
+    struct LinkedList *current = head;
+    while (current != NULL)
+    {
+        printf("%d ", current->data);
+        current = current->next;
+    }
+    printf("\n");
+}
+
 int main()
 {
     struct fraction f1;
@@ -48,6 +59,20 @@ int main()
     data2.next = &data3;
     data3.next = &data4;
     struct LinkedList *head = &data1;
+    printf("third node's data: %d\n", head->next->next->data);
+
+    print_list(head);
+
+    struct LinkedList data5 = {5, NULL};
+    data2.next = &data5;
+    data5.next = &data3;
+
+    print_list(head);
+
+    data2.next = &data3;
+    data5.next = NULL;
+
+    print_list(head);
 
     // struct BinaryTree root = {1, NULL, NULL};
     struct BinaryTree left = {2, NULL, NULL};
