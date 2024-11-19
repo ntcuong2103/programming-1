@@ -1,16 +1,21 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+typedef struct Node NodeType;
+// typedef struct Node* NodePtr;
+typedef NodeType* NodePtr;
+
 struct Node
 {
     int data;
     struct Node * next;
 };
 
+
 // insert a node with data to the end of the list
-void push_back(struct Node * head, int data)
+void push_back(NodePtr head, int data)
 {
-    struct Node *new_node = malloc(sizeof(struct Node));
+    NodePtr new_node = malloc(sizeof(NodeType));
     new_node->data = data;
     new_node->next = NULL;
 
@@ -23,9 +28,9 @@ void push_back(struct Node * head, int data)
 }
 
 // convert an array to a linked list
-struct Node * toLinkedList(int * data_arr, int N)
+NodeType * toLinkedList(int * data_arr, int N)
 {
-    struct Node *head = malloc(sizeof(struct Node));
+    NodeType *head = malloc(sizeof(NodeType));
     head->data = data_arr[0];
     head->next = NULL;
 
@@ -37,9 +42,9 @@ struct Node * toLinkedList(int * data_arr, int N)
     return head;
 }
 
-void print_list(struct Node * head)
+void print_list(NodeType * head)
 {
-    struct Node *current = head;
+    NodeType *current = head;
     while (current != NULL)
     {
         printf("%d -> ", current->data);
@@ -49,12 +54,12 @@ void print_list(struct Node * head)
 }
 
 // get data from linked list, return an array 
-int * getData(struct Node * head, int *p_size)
+int * getData(NodeType * head, int *p_size)
 {
     int *out = NULL;
     int size = 0;
 
-    struct Node *current = head;
+    NodeType *current = head;
     while (current != NULL)
     {
         size ++;
@@ -67,12 +72,12 @@ int * getData(struct Node * head, int *p_size)
     return out;
 }
 
-void free_list(struct Node * head)
+void free_list(NodeType * head)
 {
-    struct Node *current = head;
+    NodeType *current = head;
     while (current != NULL)
     {
-        struct Node *temp = current;
+        NodeType *temp = current;
         current = current->next;
         free(temp);
     }
@@ -81,16 +86,16 @@ void free_list(struct Node * head)
 int main()
 {
     int arr[] = {1, 4, 3, 7, 6};
-    struct Node * linked_list = toLinkedList(arr, 5);
+    NodeType * linked_list = toLinkedList(arr, 5);
     print_list(linked_list);
 
     // declare a structure
-    struct Node head_node;
+    NodeType head_node;
     head_node.data = 1;
     head_node.next = NULL;
 
     // declare a pointer to a structure
-    struct Node * head = &head_node;
+    NodeType * head = &head_node;
     head->data = 1;
     head->next = NULL;
 
