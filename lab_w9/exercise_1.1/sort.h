@@ -1,5 +1,3 @@
-#include "compare_func.h"
-
 #define DEBUG
 
 #ifdef DEBUG

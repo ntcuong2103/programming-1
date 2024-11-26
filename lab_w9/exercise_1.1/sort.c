@@ -33,6 +33,9 @@ void bubble_sort(int* arr, int N)
     }
 }
 
+// https://www.geeksforgeeks.org/sort-c-stl/
+// if compare_func is less, then sort in ascending order
+// if compare_func is greater, then sort in descending order
 void bubble_sort_with_type(int* arr, int N, int (*compare_func)(int, int))
 {
     if (N >= 2)
