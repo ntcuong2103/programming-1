@@ -71,14 +71,14 @@ int main(int argc, char* argv[])
     fclose(f);
 
 
-    int width = 50;
-    int height = 20;
+    int width = 100;
+    int height = 50;
 
-    int** data = malloc(height * sizeof(int*));
+    char** data = malloc(height * sizeof(char*));
 
     for (int i = 0; i < height; i++)
     {
-        data[i] = malloc(width * sizeof(int));
+        data[i] = malloc(width * sizeof(char));
         memset(data[i], 0, width);
     }
 
@@ -114,15 +114,17 @@ int main(int argc, char* argv[])
         }
     }
 
-    int scale_x = width / (max_x - min_x + 1);
-    int scale_y = height / (max_y - min_y + 1);
-    int offset_x = -min_x;
-    int offset_y = -min_y;
+    int pad = 2;
+
+    float scale_x = (float) (width - 2*pad) / (max_x - min_x + 1);
+    float scale_y = (float) (height - 2*pad) / (max_y - min_y + 1);
+    int offset_x = -min_x + pad;
+    int offset_y = -min_y + pad;
 
     for (int i = 0; i < index; i++)
     {
-        p_list[i].x = p_list[i].x * scale_x + offset_x;
-        p_list[i].y = p_list[i].y * scale_y + offset_y;
+        p_list[i].x = (p_list[i].x + offset_x) * scale_x ;
+        p_list[i].y = (p_list[i].y + offset_y) * scale_y ;
     }
 
     for (int i = 0; i < index; i++)
@@ -131,4 +133,23 @@ int main(int argc, char* argv[])
     }
 
     draw_to_screen(data, height, width);
+
+    // write to file
+    FILE* f_out = fopen("output.txt", "w");
+
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            if (data[i][j])
+            {
+                fprintf(f_out, "* ");
+            }
+            else
+            {
+                fprintf(f_out, " ");
+            }
+        }
+        fprintf(f_out, "\n");
+    }
 }
